@@ -1,0 +1,48 @@
+PROJECT: hooks
+CREATED: 15.10.2022
+PURPOSE: Aprender testing de hooks de React.
+==================================================
+
+15.10.2022
+----------
+Ojo. La librria de testing de hooks funciona bien para React 17 pero no la version actual 18.
+De momento sigo usando la libreria testing-library/react.
+El caso de os hooks es que solo se pueden usar dentro de Componentes React, pero si pueden declararse en un archivo aparte.
+Sobre ese archivo se puede hacer un testing.
+
+Usamos renderHook, una funcion que crea un componente sobre la marcha con la unica intencion de meter dentro el hook y probarlo.
+El renderHook devuelve un objeto result. La propiedad current es una referencia al componente.
+
+Por cierto, si hago un set del estado durante el testing, hay que envolverlo en una funcion act();
+De esta forma se ejecuta el seteo como si estuviese funcionando dentro del navegador.
+En el DOM real hay que esperar a que React procese las peticiones para setear un estado, el cual no se hace de forma sincrona.
+
+16.10.2022
+----------
+Voy a extender el ejemplo para trabajr con una api.
+Añado la interface User a mi model.ts.
+Creao el fichero api.ts, pero no voy a hacer una conexion a server real, sino que lo simulo para hacer testing.
+
+Creo una conexion api que simepre rechaza la peticion. Esto da igual en realidad para el testing, porque nunca voy a usar la implementacion real.
+En lugar de ello mockeare el resultado con mockResultValue();
+
+Hago mis casos. Primero, que el user incial es null.
+Luego, otro caso en el que simulo hacer login (utilizo el metodo onLogin()) y se setea mi usuario a un nuevo usuario.
+En este caso, ojo uso promesas.
+Esto siginifica que necesitare hacer uso del async...await
+Ademas, no puedo usar el await directamente en este caso, porque el metodo a llamar no devuelve una promesa sino un objeto normal.
+Por ello tengo que usar tambien la funcion waitFor.
+
+Vale. Ahora voy a hacer un testing para cuando se desmonta un compoennte.
+Lo veo por encima. Tambien el testeo de contextos.
+
+Paso a ver la integracion continua.
+El primer paso es crear un nevo repositorio en github.
+Accedo a github con mi cuenta y creo un repositorio publico.
+
+Voy a crear una clave ssh:
+Abro el terminal.
+$ ssh-keygen -t ed25519 -C "your_email@example.com"
+
+
+
